@@ -7,9 +7,9 @@ require 'creature_feature/version'
 Gem::Specification.new do |s|
   s.name        = 'creature_feature'
   s.version     = CreatureFeature::VERSION
-  s.authors     = ['TODO: Your name']
-  s.email       = ['TODO: Your email']
-  s.homepage    = 'TODO'
+  s.authors     = ['Earle Clubb']
+  s.email       = ['eclubb@valcom.com']
+  s.homepage    = ''
   s.summary     = 'TODO: Summary of CreatureFeature.'
   s.description = 'TODO: Description of CreatureFeature.'
 
