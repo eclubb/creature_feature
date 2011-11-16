@@ -1,0 +1,22 @@
+= form_for @role, :url => url do |f|
+  -if @role.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@role.errors.count, "error")} prohibited this role from being saved:"
+      %ul
+        - @role.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  - @features.each do |feature|
+    .field
+      = check_box_tag 'role[feature_permissions][][feature_id]', feature.id, @role.features.include?(feature),
+        :id => "role_feature_permissions_#{feature.id}_feature_id"
+      = label_tag "role_feature_permissions_#{feature.id}_feature_id", feature.name
+
+      = check_box_tag 'role[feature_permissions][][read_only]', 1, @role.read_only_features.include?(feature),
+        :id => "role_feature_permissions_#{feature.id}_read_only"
+      = label_tag "role_feature_permissions_#{feature.id}_read_only", 'Read-Only'
+  .actions
+    = f.submit 'Save'

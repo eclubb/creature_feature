@@ -10,3 +10,17 @@ Feature: View Features
     When I go to the list of features
     Then I should see "Manage Users"
     And I should see "Manage Roles"
+
+  Scenario: Feature List Includes Associated Roles
+    Given a role with a feature exists with a name of "Admin"
+    And a role with a feature exists with a name of "User"
+    When I go to the list of features
+    Then I should see "Manage Users"
+    And I should see "Admin"
+    And I should see "User"
+
+  Scenario: Feature List Sorts Associated Roles Alphabetically
+    Given a role with a feature exists with a name of "User"
+    And a role with a feature exists with a name of "Admin"
+    When I go to the list of features
+    Then I should see "Admin, User"

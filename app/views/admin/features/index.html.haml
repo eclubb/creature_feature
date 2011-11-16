@@ -3,7 +3,9 @@
 %table
   %tr
     %th Name
+    %th Roles
 
   - @features.each do |feature|
     %tr
       %td= feature.name
+      %td= feature.list_roles
