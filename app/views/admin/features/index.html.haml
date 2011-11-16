@@ -1,0 +1,9 @@
+%h1 Listing Features
+
+%table
+  %tr
+    %th Name
+
+  - @features.each do |feature|
+    %tr
+      %td= feature.name
