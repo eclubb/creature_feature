@@ -30,7 +30,6 @@ Feature: Assign Features to Roles
 
   Scenario: Assign a Feature to an Existing Role
     Given a role with a feature exists with a name of "Admin"
-    And a role exists with a name of "Manager"
     When I go to the list of roles
     And I follow "Edit"
     Then the "Manage Users" checkbox should be checked
@@ -42,7 +41,6 @@ Feature: Assign Features to Roles
 
   Scenario: Remove a Feature from an Existing Role
     Given a role with two features exists with a name of "Admin"
-    And a role exists with a name of "Manager"
     When I go to the list of roles
     And I follow "Edit"
     Then the "Manage Users" checkbox should be checked
@@ -54,7 +52,6 @@ Feature: Assign Features to Roles
 
   Scenario: Make a Read-Only Feature Writeable
     Given a role with a read only feature exists with a name of "Admin"
-    And a role exists with a name of "Manager"
     When I go to the list of roles
     And I follow "Edit"
     Then the "Manage Users" checkbox should be checked
@@ -65,7 +62,6 @@ Feature: Assign Features to Roles
 
   Scenario: Make a Writeable Feature Read-Only
     Given a role with a feature exists with a name of "Admin"
-    And a role exists with a name of "Manager"
     When I go to the list of roles
     And I follow "Edit"
     Then the "Manage Users" checkbox should be checked
