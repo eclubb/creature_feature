@@ -32,8 +32,9 @@ module Admin
 
       if success = @role.save
         fp_params.each do |fp|
-          next if fp['feature_id'] == ''
-          @role.feature_permissions << FeaturePermission.new(fp.merge(:role => @role))
+          next if fp['feature_id'].blank?
+          read_only = fp['read_only'] == fp['feature_id']
+          @role.feature_permissions << FeaturePermission.new(fp.merge(:role => @role, :read_only => read_only))
         end
 
         success = @role.save
@@ -62,8 +63,9 @@ module Admin
       if success = @role.update_attributes(params[:role])
         @role.features = []
         fp_params.each do |fp|
-          next if fp['feature_id'] == ''
-          @role.feature_permissions << FeaturePermission.new(fp.merge(:role => @role))
+          next if fp['feature_id'].blank?
+          read_only = fp['read_only'] == fp['feature_id']
+          @role.feature_permissions << FeaturePermission.new(fp.merge(:role => @role, :read_only => read_only))
         end
 
         success = @role.save

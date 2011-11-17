@@ -15,7 +15,7 @@
         :id => "role_feature_permissions_#{feature.id}_feature_id"
       = label_tag "role_feature_permissions_#{feature.id}_feature_id", feature.name
 
-      = check_box_tag 'role[feature_permissions][][read_only]', 1, @role.read_only_features.include?(feature),
+      = check_box_tag 'role[feature_permissions][][read_only]', feature.id, @role.read_only_features.include?(feature),
         :id => "role_feature_permissions_#{feature.id}_read_only"
       = label_tag "role_feature_permissions_#{feature.id}_read_only", 'Read-Only'
   .actions
