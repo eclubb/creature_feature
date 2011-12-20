@@ -4,6 +4,8 @@ class Role < ActiveRecord::Base
   has_many :feature_permissions, :dependent => :destroy
   has_many :features, :through => :feature_permissions
 
+  scope :visible, where(:hidden => false)
+
   def read_only_features
     list = []
 

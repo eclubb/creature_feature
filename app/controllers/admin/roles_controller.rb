@@ -1,11 +1,11 @@
 module Admin
   class RolesController < ApplicationController
     def index
-      @roles = Role.all
+      @roles = Role.visible
     end
 
     def show
-      @role = Role.find(params[:id])
+      get_and_verify_role
     end
 
     def new
@@ -14,7 +14,7 @@ module Admin
     end
 
     def edit
-      @role = Role.find(params[:id])
+      get_and_verify_role
       @features = Feature.all
     end
 
@@ -49,13 +49,14 @@ module Admin
     end
 
     def update
+      return unless get_and_verify_role
+
       if params[:role]
         fp_params = params[:role].delete(:feature_permissions) || []
       else
         fp_params = []
       end
 
-      @role = Role.find(params[:id])
       @features = Feature.all
 
       success = false
@@ -79,12 +80,22 @@ module Admin
     end
 
     def destroy
-      @role = Role.find(params[:id])
+      return unless get_and_verify_role
       @role.destroy
 
       notice = 'Role was successfully deleted.'
 
       redirect_to(admin_roles_url, :notice => notice)
+    end
+
+    private
+
+    def get_and_verify_role
+      @role = Role.visible.find(params[:id]) rescue nil
+
+      redirect_to(admin_roles_url, :alert => 'Invalid Role') and return false if @role.nil?
+
+      return true
     end
   end
 end
