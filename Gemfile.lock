@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    creature_feature (0.0.1)
+    creature_feature (0.1.0)
       haml-rails
       rails (~> 3.1.1)
 
