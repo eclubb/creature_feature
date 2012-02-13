@@ -11,7 +11,9 @@ require File.expand_path('../../../spec/dummy/config/environment', __FILE__)
 require 'cucumber/rails'
 
 require 'factory_girl_rails'
-Dir[File.expand_path('../../../spec/factories/*.rb', __FILE__)].each { |file| require file }
+
+# Reload factories and rebuild step definitions.
+FactoryGirl.reload
 require 'factory_girl/step_definitions'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
